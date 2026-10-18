@@ -1,0 +1,100 @@
+.con{
+    /* width: 200px;
+    height: 200px; */
+    color: white;
+    /* height: 20vh; */
+}
+.con1{
+    background-color: red;
+    box-shadow: 5px 15px 10px rgba(128, 128, 128, 0.705);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.514)), url("./images/bb.jpg");
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    transition: 4s;
+    /* height: 20vh; */
+}
+.con1:hover{
+    transform: scale(1.2);
+    border-radius: 50%;
+    transform: rotate(360deg);
+}
+.con2{
+    background-color: black;
+    animation: anime 3s alternate infinite;
+    border-radius: 50%;
+    /* transition: 19s; */
+}
+
+@keyframes anime{
+    from{
+        transform: translateY(0px);
+        border-radius: 50%;
+        background-color: red; 
+         /* transition: 15s; */
+    }
+    to{
+       transform: translateY(200px);
+       /* width: 200px;
+       height: 100px; */
+       border-radius: 50%;
+       background-color: yellow;
+        /* transition: 3s;  */
+    }
+}
+.con3{
+    background-color: blue;
+     animation: meme 3.3s alternate infinite;
+    border-radius: 50%;
+}
+@keyframes meme{
+    from{
+        transform: translateY(0px);
+        border-radius: 50%;
+        background-color: blue; 
+         /* transition: 15s; */
+    }
+    to{
+       transform: translateY(200px);
+       /* width: 200px;
+       height: 100px; */
+       border-radius: 50%;
+       background-color: red;
+        /* transition: 3s;  */
+    }
+}
+.con4{
+    background-color: purple;
+    animation: oeoe 3.6s alternate infinite;
+    border-radius: 50%;
+}
+@keyframes oeoe{
+    from{
+        transform: translateY(0px);
+        border-radius: 50%;
+        background-color: purple; 
+         /* transition: 15s; */
+    }
+    to{
+       transform: translateY(200px);
+       /* width: 200px;
+       height: 100px; */
+       border-radius: 50%;
+       background-color: blue;
+       
+        /* transition: 3s;  */
+    }
+}
+.con5{
+    background-color: yellow;
+}
+.con6{
+    background-color: brown;
+}
+.container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr)) ;
+    grid-template-rows: 200px 200px 200px;
+    gap: 0.5em;
+    /* grid-template-rows: 100px 200px; */
+}

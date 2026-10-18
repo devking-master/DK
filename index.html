@@ -71,6 +71,10 @@ section{position:relative;padding:14vh 5vw}
 #pv{position:fixed;left:0;top:0;width:330px;height:220px;border:1px solid var(--line);border-radius:14px;background:rgba(12,16,20,.82);backdrop-filter:blur(18px);z-index:60;pointer-events:none;opacity:0;transform:scale(.85);transition:opacity .3s,scale .3s;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 #pv.show{opacity:1}
 #pv img{width:100%;height:100%;display:block;object-fit:cover}
+.progress-flag{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;gap:7px;max-width:calc(100% - 24px);padding:6px 10px;border:0;border-radius:99px;background:rgba(5,7,10,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--acc);font:500 12px/1.2 var(--b);text-shadow:0 1px 8px rgba(0,0,0,.75);white-space:nowrap}
+.progress-flag::before{content:"";width:6px;height:6px;flex:0 0 6px;border-radius:50%;background:var(--acc);animation:progressPulse 1.5s ease-in-out infinite}
+@keyframes progressPulse{50%{box-shadow:0 0 0 4px rgba(124,245,208,0);opacity:.6}}
+#pv .progress-flag,.thumb .progress-flag{top:8px;left:8px}
 /* capabilities */
 .cap{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .cap>div{background:var(--bg);padding:36px 30px 44px}
@@ -93,6 +97,11 @@ footer{display:flex;justify-content:space-between;padding:30px 5vw 40px;color:va
 .mq span::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--acc);margin-left:56px;vertical-align:middle}
 @keyframes mq{to{transform:translateX(-50%)}}
 .h2{font:500 clamp(30px,4.6vw,64px)/1.08 var(--d);letter-spacing:-.035em;margin:0 0 28px}
+.about-intro{margin-bottom:12px}
+.about-intro .name{display:inline-block;color:var(--acc);text-shadow:0 0 24px rgba(124,245,208,.18);transform-origin:left bottom}
+.ab.in .about-intro .name{animation:devkingIntro .7s cubic-bezier(.16,1,.3,1) both}
+@keyframes devkingIntro{from{opacity:0;transform:translateY(10px) rotate(-3deg)}to{opacity:1;transform:none}}
+.about-strap{font:500 clamp(23px,3vw,38px)/1.12 var(--d);margin:0 0 24px;max-width:17em}
 .ab{display:grid;grid-template-columns:1.3fr 1fr;gap:6vw;align-items:start}
 .ab p{color:var(--mute);margin:0 0 18px;max-width:34em}
 .facts{border-top:1px solid var(--line)}
@@ -144,7 +153,7 @@ dialog[open]{animation:dg .5s cubic-bezier(.16,1,.3,1)}
 .sc{height:420vh;padding:0}
 .sct{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding-left:5vw}
 .rail{display:flex;gap:5vw;width:max-content;will-change:transform;padding-right:10vw}
-.sl{flex:0 0 min(64vw,820px);margin:0}
+.sl{flex:0 0 min(64vw,820px);margin:0;position:relative}
 .sl img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-radius:14px;box-shadow:0 40px 90px rgba(0,0,0,.55)}
 .sl figcaption{display:flex;justify-content:space-between;gap:20px;margin-top:18px;color:var(--mute);font-size:15px}
 .sl figcaption b{font:500 26px var(--d);letter-spacing:-.03em;color:var(--ink)}
@@ -158,8 +167,8 @@ dialog[open]{animation:dg .5s cubic-bezier(.16,1,.3,1)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:12vh;border-top:1px solid var(--line);padding-top:36px}
 .stats b{display:block;font:500 clamp(44px,7vw,96px)/1 var(--d);letter-spacing:-.04em}
 .stats span{color:var(--mute);font-size:15px}
-.th{display:none}
-@media(hover:none){.th{display:block;grid-column:1/-1;width:100%;border-radius:10px;margin-top:12px}}
+.thumb{display:none}
+@media(hover:none){.thumb{display:block;grid-column:1/-1;position:relative;width:100%;margin-top:12px}.thumb img{width:100%;display:block;border-radius:10px}}
 @media(max-width:800px){.stats{grid-template-columns:1fr 1fr}.sl{flex-basis:82vw}.sc{height:320vh}.sh{display:none}}
 @media(max-width:800px){.cap{grid-template-columns:1fr}.meta{flex-direction:column;gap:14px}nav{padding:16px 5vw;mix-blend-mode:normal;background:rgba(5,7,10,.86);backdrop-filter:blur(14px)}nav .menu-toggle{width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;padding:0;border:1px solid var(--line);border-radius:50%;background:rgba(255,255,255,.04);color:var(--ink);cursor:pointer}nav .menu-toggle span{width:16px;height:1px;background:currentColor;transition:transform .35s cubic-bezier(.16,1,.3,1),width .35s}nav .menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(3.5px) rotate(45deg)}nav .menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}nav .links{position:absolute;top:calc(100% - 1px);left:4vw;right:4vw;display:flex;flex-direction:column;gap:0;padding:8px 20px;border:1px solid var(--line);border-radius:8px;background:rgba(5,7,10,.97);backdrop-filter:blur(18px);opacity:0;visibility:hidden;transform:translateY(-10px) scale(.98);transform-origin:top right;transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}nav .links.open{opacity:1;visibility:visible;transform:none}nav .links a{padding:14px 0;border-bottom:1px solid var(--line);font-size:16px}nav .links a:last-child{border-bottom:0}}
 @media(max-width:800px){html{scroll-padding-top:72px}nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:100;padding:10px 5vw}.st{gap:8px}.st .brand{width:44px;height:30px}nav .menu-toggle{width:42px;height:42px}nav .links{top:calc(100% + 8px);left:3vw;right:3vw}.stmt{height:190vh;height:190svh}.stmt div{height:100vh;height:100svh;justify-content:center;padding:0 7vw}.stmt p{max-width:15em;text-align:center;font-size:clamp(27px,7vw,32px);font-weight:600;line-height:1.16}.sc{height:240vh;height:240svh}.sct{height:100vh;height:100svh;padding-left:5vw}.sct .lab{margin-bottom:24px}.mag{align-self:flex-start;max-width:100%;width:fit-content;min-width:0;flex-wrap:wrap;justify-content:center;text-align:center;overflow-wrap:anywhere;word-break:break-word;font-size:clamp(16px,4.6vw,20px);line-height:1.35;padding:17px 18px;border-radius:18px}}
@@ -195,11 +204,11 @@ dialog[open]{animation:dg .5s cubic-bezier(.16,1,.3,1)}
 <section id="about">
 <div class="lab rv">About</div>
 <div class="ab rv">
-<div><h2 class="h2">Designer's eye, engineer's discipline.</h2>
+<div><h2 class="h2 about-intro">Hi, I am <span class="name">DevKing</span>.</h2><h3 class="about-strap">Designer's eye, engineer's discipline.</h3>
 <p>I'm a full-stack developer who builds for clients and for the classroom. I like work with real users: dashboards people filter all day, checkouts that must not fail, games that need to feel right at 60 frames a second.</p>
 <p>I design and code every layer myself, so nothing gets lost between a mockup and production.</p>
-<a class="cvb" href="cv.pdf" download>Download CV</a></div>
-<div class="rc"><div class="pt rv"><img data-px src="images/profi.jpg" alt="Portrait of DevKing Sammy"></div><div class="facts"><div><span>Focus</span>Web apps, dashboards, games</div><div><span>Stack</span>React, Node, Firebase</div><div><span>Works</span>Remote, solo or with teams</div><div><span>Status</span>Open to new projects</div></div></div>
+<a class="cvb" href="" download>Download CV</a></div>
+<div class="rc"><div class="pt rv"><img data-px src="images/profi.jpg" alt="Portrait of DevKing Sammy"></div><div class="facts"><div><span>Focus</span>Web apps, dashboards, games</div><div><span>Stack</span>React, Node, Firebase, JavaScript, Mongodb, Nextjs, Tailwind CSS</div><div><span>Works</span>Remote, solo or with teams</div><div><span>Status</span>Open to new projects</div></div></div>
 </div>
 <div class="stats rv"><div><b data-n="5">0</b><span>Featured builds</span></div><div><b data-n="12">0</b><span>Charts in one dashboard</span></div><div><b data-n="3">0</b><span>Disciplines: web, data, games</span></div><div><b data-n="2">0</b><span>Payment checkout flows</span></div></div>
 </section>
@@ -256,8 +265,9 @@ const P=[
 ["Portfolio","A visual portfolio presenting selected work, capabilities and contact details.","Portfolio","https://e-star-three.vercel.app/"]];
 const IMG=['kinetic.png','Ai-Studio.png','Luxe.png','Mini-Mart.png','Portfolio.png'];
 const projectImage=i=>`images/${IMG[i]}`;
-$('#list').innerHTML=P.map((p,i)=>`<a class="pj" href="${p[3]}" target="_blank" rel="noopener noreferrer" data-i="${i}"><h3>${p[0]}</h3><small>${p[2]}</small><p>${p[1]}</p><img class="th" loading="lazy" src="${projectImage(i)}" alt="${p[0]} website preview"></a>`).join('');
-const C=[["Full-stack","React and Next.js interfaces on Node and Express APIs, with secure auth and clean data models.",["React","Node.js","JWT","MongoDB"],"M0 60 C40 60 40 20 80 20 S120 60 160 60 S200 20 240 20 S280 60 320 30"],
+const projectStatus=i=>i<2?'<span class="progress-flag">Still in progress</span>':'';
+$('#list').innerHTML=P.map((p,i)=>`<a class="pj" href="${p[3]}" target="_blank" rel="noopener noreferrer" data-i="${i}"><h3>${p[0]}</h3><small>${p[2]}</small><p>${p[1]}</p><span class="thumb"><img class="th" loading="lazy" src="${projectImage(i)}" alt="${p[0]} website preview">${projectStatus(i)}</span></a>`).join('');
+const C=[["Full-stack","React and Next.js interfaces on Node and Express APIs, with secure auth and clean data models.",["React","Node.js","JWT","MongoDB", "Firebase", "Javascript", "Tailwind", "Nextjs", "HTML", "CSS"],"M0 60 C40 60 40 20 80 20 S120 60 160 60 S200 20 240 20 S280 60 320 30"],
 ["Data visualization","Dashboards that turn raw datasets into filters, charts and insights people can act on.",["Chart.js","Filters","CSV","Insights"],"M0 70 L40 50 L80 58 L120 24 L160 40 L200 10 L240 30 L320 6"],
 ["Game development","Real-time browser games with physics, AI, particles and audio, all in plain JavaScript.",["Canvas","Physics","AI","Web Audio"],"M0 40 C30 0 60 80 90 40 S150 0 180 40 S240 80 270 40 S310 20 320 40"]];
 $('#cap').innerHTML=C.map(c=>`<div><svg viewBox="0 0 320 80" aria-hidden="true"><path d="${c[3]}"/></svg><h3>${c[0]}</h3><p>${c[1]}</p><ul>${c[2].map(t=>`<li>${t}</li>`).join('')}</ul></div>`).join('');
@@ -278,7 +288,7 @@ $('#cf').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e
  location.href=`mailto:hello@yourdomain.com?subject=${encodeURIComponent('Project enquiry from '+f.get('n'))}&body=${encodeURIComponent(f.get('m')+'\n\nReply to: '+f.get('e'))}`});
 /* showcase, parallax, counters, progress */
 const SC=$('#sc'),rail=$('#rail'),pg=$('#pg'),up=$('#up'),pxs=[...document.querySelectorAll('[data-px]')],h1=$('.hero h1');
-rail.innerHTML=P.map((p,i)=>`<figure class="sl"><img loading="lazy" src="${projectImage(i)}" alt="${p[0]} project photography"><figcaption><b>${p[0]}</b><span>${p[2]}</span></figcaption></figure>`).join('');
+rail.innerHTML=P.map((p,i)=>`<figure class="sl"><img loading="lazy" src="${projectImage(i)}" alt="${p[0]} project photography">${projectStatus(i)}<figcaption><b>${p[0]}</b><span>${p[2]}</span></figcaption></figure>`).join('');
 const sls=[...rail.children];
 function sc2(){const y=scrollY,vh=innerHeight,vw=innerWidth;
  pg.style.transform=`scaleX(${y/Math.max(1,document.documentElement.scrollHeight-vh)})`;
@@ -299,7 +309,7 @@ const ring=$('#ring'),pv=$('#pv');let mx=0,my=0,rx=0,ry=0,px=0,py=0;
 addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY});
 document.querySelectorAll('a,button').forEach(a=>{a.addEventListener('pointerenter',()=>ring.classList.add('big'));a.addEventListener('pointerleave',()=>ring.classList.remove('big'))});
 document.querySelectorAll('.pj').forEach(a=>{
- a.addEventListener('pointerenter',()=>{pv.innerHTML=`<img src="${projectImage(+a.dataset.i)}" alt="">`;pv.classList.add('show')});
+ a.addEventListener('pointerenter',()=>{const i=+a.dataset.i;pv.innerHTML=`<img src="${projectImage(i)}" alt="">${projectStatus(i)}`;pv.classList.add('show')});
  a.addEventListener('pointerleave',()=>pv.classList.remove('show'))});
 /* magnetic button */
 const mg=$('#mag');
